@@ -1,12 +1,10 @@
 package com.wanshe.view;
 import com.wanshe.R;
 
-import android.R.raw;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +21,7 @@ public class DialogManager {
 	}
 	
 	public void showRecordingDialog(){
-		mDialog = new Dialog(mContext,R.style.Mydialog);
+		mDialog = new Dialog(mContext, R.style.Mydialog);
 		//mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_recorder,null);
 		mDialog.setContentView(view);
