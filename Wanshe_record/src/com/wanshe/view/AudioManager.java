@@ -8,6 +8,7 @@ import android.R.integer;
 import android.graphics.Path.Direction;
 import android.media.MediaRecorder;
 import android.text.GetChars;
+import android.util.Log;
 
 public class AudioManager {
 	private MediaRecorder mMediaRecorder;
@@ -70,7 +71,7 @@ public class AudioManager {
 			mMediaRecorder.start();
 			// 准备结束
 			isPrepared = true;
-			// 通知button可以录音了
+			// 通知button录音准备好了
 			if (mListener != null) {
 				mListener.wellPrepared();
 			}
@@ -80,14 +81,24 @@ public class AudioManager {
 		}
 	}
 
+	/**
+	 * 音频文件名字
+	 * @return
+	 */
 	private String generateFileName() {
 		return UUID.randomUUID().toString() + ".amr";
 	}
 
+	/**
+	 * 设置音量等级
+	 * @param maxLevel
+	 * @return
+	 */
 	public int getVoiceLevel(int maxLevel) {
 		if (isPrepared) {
 			try {
 				// mRecorder.getMaxAmplitude() 1-32767
+				//Log.e("test", "更新音量大小: "+(maxLevel * mMediaRecorder.getMaxAmplitude() / 32768 + 1));
 				return maxLevel * mMediaRecorder.getMaxAmplitude() / 32768 + 1;
 			} catch (Exception e) {
 
@@ -100,12 +111,17 @@ public class AudioManager {
 	 * 释放资源
 	 */
 	public void release() {
-		mMediaRecorder.stop();
-		mMediaRecorder.release();
-		mMediaRecorder = null;
+		if(mMediaRecorder != null){
+			mMediaRecorder.stop();
+			mMediaRecorder.release();
+			mMediaRecorder = null;
+		}
 	}
 
 	
+	/**
+	 * 取消录音
+	 */
 	public void cancel() {
 		release();
 		if(mMediaRecorder != null){
@@ -113,5 +129,9 @@ public class AudioManager {
 			file.delete();
 			mMediaRecorder = null;
 		}
+	}
+
+	public String getCurrentFilePath() {
+		return mCurrentFilePath;
 	}
 }

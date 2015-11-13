@@ -3,6 +3,7 @@ import com.wanshe.R;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -80,11 +81,12 @@ public class DialogManager {
 	 */
 	public void updateVoiceLevel(int level){
 		if(mDialog != null && mDialog.isShowing()){
-			iv_icon.setVisibility(View.VISIBLE);
-			iv_vol.setVisibility(View.VISIBLE);
-			tv_finger.setVisibility(View.VISIBLE);
+//			iv_icon.setVisibility(View.VISIBLE);
+//			iv_vol.setVisibility(View.VISIBLE);
+//			tv_finger.setVisibility(View.VISIBLE);
 			
 			int resId = mContext.getResources().getIdentifier("v"+level, "drawable", mContext.getPackageName());
+			Log.e("vol", String.valueOf(resId));
 			iv_vol.setImageResource(resId);
 		}
 	}
