@@ -1,12 +1,11 @@
 package com.wanshe.view;
 import com.wanshe.R;
 
-import android.R.raw;
 import android.app.Dialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,7 +22,7 @@ public class DialogManager {
 	}
 	
 	public void showRecordingDialog(){
-		mDialog = new Dialog(mContext,R.style.Mydialog);
+		mDialog = new Dialog(mContext, R.style.Mydialog);
 		//mDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		View view = LayoutInflater.from(mContext).inflate(R.layout.dialog_recorder,null);
 		mDialog.setContentView(view);
@@ -82,11 +81,12 @@ public class DialogManager {
 	 */
 	public void updateVoiceLevel(int level){
 		if(mDialog != null && mDialog.isShowing()){
-			iv_icon.setVisibility(View.VISIBLE);
-			iv_vol.setVisibility(View.VISIBLE);
-			tv_finger.setVisibility(View.VISIBLE);
+//			iv_icon.setVisibility(View.VISIBLE);
+//			iv_vol.setVisibility(View.VISIBLE);
+//			tv_finger.setVisibility(View.VISIBLE);
 			
 			int resId = mContext.getResources().getIdentifier("v"+level, "drawable", mContext.getPackageName());
+			Log.e("vol", String.valueOf(resId));
 			iv_vol.setImageResource(resId);
 		}
 	}
