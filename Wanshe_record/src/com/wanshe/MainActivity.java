@@ -47,6 +47,7 @@ public class MainActivity extends Activity implements OnItemClickListener, OnCom
 					public void onFinish(float seconds, String filePath) {
 						Recorder recorder = new Recorder(seconds, filePath);
 						//添加数据
+						//jjjiji
 						mDatas.add(recorder);
 						// 更新显示
 						mAdapter.notifyDataSetChanged();
